@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * Array based storage for Resumes
  */
@@ -6,9 +8,10 @@ public class ArrayStorage {
     int size = 0;
 
     void clear() {
-        for (int i = 0; i < size; i++) {
-            storage[i] = null;
-        }
+//        for (int i = 0; i < size; i++) {
+//            storage[i] = null;
+//        }
+        Arrays.fill(storage, null);
         size = 0;
     }
 
@@ -38,7 +41,6 @@ public class ArrayStorage {
                 break;
             }
         }
-
     }
 
     /**
