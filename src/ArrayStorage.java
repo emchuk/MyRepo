@@ -30,9 +30,11 @@ public class ArrayStorage {
         for (int i = 0; i < size; i++) {
             if (storage[i].uuid.equals(uuid) && i != size - 1) {
                 storage[i] = storage[size - 1];
+                storage[size - 1] = null;
                 size--;
             }
             if (storage[i].uuid.equals(uuid) && i == size - 1) {
+                storage[size - 1] = null;
                 size--;
             }
         }
@@ -42,10 +44,7 @@ public class ArrayStorage {
      * @return array, contains only Resumes in storage (without null)
      */
     Resume[] getAll() {
-        Resume[] all = new Resume[size];
-        for (int i = 0; i < size; i++) {
-            all[i] = storage[i];
-        }
+        Resume[] all = Arrays.copyOfRange(storage, 0, size);
         return all;
     }
 
