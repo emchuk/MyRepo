@@ -9,6 +9,7 @@ public class ArrayStorage {
         for (int i = 0; i < size; i++) {
             storage[i] = null;
         }
+        size = 0;
     }
 
     void save(Resume r) {
@@ -29,11 +30,15 @@ public class ArrayStorage {
         for (int i = 0; i < size; i++) {
             if (storage[i].uuid.equals(uuid)) {
                 storage[i] = storage[size - 1];
+                storage[size - 1] = null;
+                size--;
+                break;
+            } else {
+                System.out.println("\nno such id");
                 break;
             }
         }
-        storage[size - 1] = null;
-        size--;
+
     }
 
     /**
