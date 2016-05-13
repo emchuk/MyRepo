@@ -13,6 +13,7 @@ public class ArrayStorage {
 
     void save(Resume r) {
         storage[size()] = r;
+        size++;
     }
 
     Resume get(String uuid) {
@@ -32,6 +33,7 @@ public class ArrayStorage {
             }
         }
         storage[size - 1] = null;
+        size--;
     }
 
     /**
@@ -46,11 +48,6 @@ public class ArrayStorage {
     }
 
     int size() {
-        int i = 0;
-        while (storage[i] != null && i < storage.length) {
-            i++;
-        }
-        size = i;
         return size;
     }
 }
