@@ -8,15 +8,12 @@ public class ArrayStorage {
     int size = 0;
 
     void clear() {
-//        for (int i = 0; i < size; i++) {
-//            storage[i] = null;
-//        }
-        Arrays.fill(storage, null);
+        Arrays.fill(storage, 0, size - 1, null);
         size = 0;
     }
 
     void save(Resume r) {
-        storage[size()] = r;
+        storage[size] = r;
         size++;
     }
 
@@ -31,14 +28,12 @@ public class ArrayStorage {
 
     void delete(String uuid) {
         for (int i = 0; i < size; i++) {
-            if (storage[i].uuid.equals(uuid)) {
+            if (storage[i].uuid.equals(uuid) && i != size - 1) {
                 storage[i] = storage[size - 1];
-                storage[size - 1] = null;
                 size--;
-                break;
-            } else {
-                System.out.println("\nno such id");
-                break;
+            }
+            if (storage[i].uuid.equals(uuid) && i == size - 1) {
+                size--;
             }
         }
     }

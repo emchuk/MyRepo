@@ -17,11 +17,11 @@ public class MainArray {
         arrayStorage.save(r2);
         arrayStorage.save(r3);
 
-        System.out.println("Get r1: " + arrayStorage.get(r1.uuid));
+        System.out.println("Get r1: " + arrayStorage.get(r3.uuid));
         System.out.println("Size: " + arrayStorage.size());
 
         printAll();
-        arrayStorage.delete(r1.uuid);
+        arrayStorage.delete(r3.uuid);
         printAll();
         arrayStorage.clear();
         printAll();
