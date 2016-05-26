@@ -2,6 +2,8 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.model.Resume;
 
+import java.util.Arrays;
+
 /**
  * Array based storage for Resumes
  */
@@ -10,23 +12,39 @@ public class ArrayStorage {
     private int size = 0;
 
     public void clear() {
+        Arrays.fill(storage, 0, size - 1, null);
+        size = 0;
     }
 
     public void update(Resume r) {
-        // TODO check resume present
-        System.out.println("ERROR");
-
+        for (int i = 0; i < size; i++) {
+            if (storage[i] == r) {
+                storage[i] = r;
+                System.out.println(i);
+                break;
+            }
+            if (storage[i] != r && i == size - 1) {
+                System.out.println("ERROR");
+            }
+        }
     }
 
     public void save(Resume r) {
-        // TODO check for overflow
-        // TODO check resume not present
+        if (size == storage.length) {
+            System.out.println("The Storage is FULL!");
+        }
+        for (int i = 0; i<size; i++){
+            if(storage[i] == r){
+                System.out.println("ERROR");
+            }
+        }
+        storage[size] = r;
+        size++;
     }
 
     public Resume get(String uuid) {
-        // TODO check resume present
         for (int i = 0; i < size; i++) {
-            if (uuid == storage[i].getUuid()) {
+            if (uuid == storage[i].getUuid() && present(uuid)) {
                 return storage[i];
             }
         }
@@ -34,11 +52,10 @@ public class ArrayStorage {
     }
 
     public void delete(String uuid) {
-        // TODO check resume present
         for (int i = 0; i < size; i++) {
-            if (uuid == storage[i].getUuid()) {
+            if (uuid == storage[i].getUuid() && present(uuid)) {
                 storage[i] = storage[size - 1];
-                storage[i] = null;
+                storage[size - 1] = null;
                 size--;
             }
         }
@@ -48,11 +65,20 @@ public class ArrayStorage {
      * @return array, contains only Resumes in storage (without null)
      */
     public Resume[] getAll() {
-        Resume[] result = new Resume[size];
-        return result;
+        Resume[] all = Arrays.copyOfRange(storage, 0, size);
+        return all;
     }
 
     public int size() {
         return size;
+    }
+
+    public boolean present(String uuid) {
+        for (int i = 0; i < size; i++) {
+            if (uuid == storage[i].getUuid()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

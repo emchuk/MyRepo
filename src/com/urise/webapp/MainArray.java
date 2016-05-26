@@ -18,8 +18,6 @@ public class MainArray {
         Resume r3 = new Resume();
         r3.setUuid("uuid3");
 
-        System.out.println(r1==r2);
-
         arrayStorage.save(r1);
         arrayStorage.save(r2);
         arrayStorage.save(r3);
@@ -30,7 +28,7 @@ public class MainArray {
         System.out.println("Get dummy: " + arrayStorage.get("dummy"));
 
         printAll();
-        arrayStorage.delete(r1.getUuid());
+        arrayStorage.delete(r3.getUuid());
         printAll();
         arrayStorage.clear();
         printAll();
