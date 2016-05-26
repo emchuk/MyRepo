@@ -18,12 +18,12 @@ public class ArrayStorage {
 
     public void update(Resume r) {
         for (int i = 0; i < size; i++) {
-            if (storage[i] == r) {
+            if (storage[i].getUuid() == r.getUuid()) {
                 storage[i] = r;
                 System.out.println(i);
                 break;
             }
-            if (storage[i] != r && i == size - 1) {
+            if (storage[i].getUuid() != r.getUuid() && i == size - 1) {
                 System.out.println("ERROR");
             }
         }
@@ -34,7 +34,7 @@ public class ArrayStorage {
             System.out.println("The Storage is FULL!");
         }
         for (int i = 0; i<size; i++){
-            if(storage[i] == r){
+            if(storage[i].getUuid() == r.getUuid()){
                 System.out.println("ERROR");
             }
         }
